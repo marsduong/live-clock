@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<style>
+  body {
+    margin: 0;
+    padding: 12px 20px;
+    background: transparent;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #00e5ff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+  }
+  .box {
+    display: inline-block;
+    background: transparent; /* Nền mờ, có thể đổi thành transparent nếu không cần */
+    padding: 10px 18px;
+    border-radius: 10px;
+  }
+  .date {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .clock {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="date" id="date"></div>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script>
+    const days = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+
+    function updateTime() {
+      const now = new Date();
+      const dayName = days[now.getDay()];
+      const dd = String(now.getDate()).padStart(2, '0');
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const yyyy = now.getFullYear();
+
+      const hh = String(now.getHours()).padStart(2, '0');
+      const min = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+
+      document.getElementById("date").textContent = `${dayName}, ${dd}/${mm}/${yyyy}`;
+      document.getElementById("clock").textContent = `${hh}:${min}:${ss}`;
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>
